@@ -1,0 +1,1 @@
+This Discord bot is specifically designed for use in a dedicated Roblox server. Please note that this is a test version, and its functionality is limited to testing purposes only. (ik the code is garbage.)
