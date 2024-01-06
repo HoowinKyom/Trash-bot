@@ -13,7 +13,6 @@ def get_response(message: str) -> str:
         'nigg': "I'm here to assist and keep things friendly. Let's keep the conversation respectful, please 🤬.",
         'nigged': "I'm here to assist and keep things friendly. Let's keep the conversation respectful, please 🤬.",
         'school': "Fuck school 🔥"
-        #add more responses if you want just follow the structure
     }
 
     return responses.get(p_message, '')
