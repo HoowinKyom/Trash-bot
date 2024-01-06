@@ -16,4 +16,4 @@ def get_response(message: str) -> str:
         #add more responses if you want just follow the structure
     }
 
-
+    return responses.get(p_message, '')
