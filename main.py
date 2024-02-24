@@ -5,12 +5,10 @@ import responses
 
 DISCORD_TOKEN = ""#your bot token
 
-# Define required intents
 intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 
-# Create client object
 client = discord.Client(intents=intents)
 POLL_OPTION_EMOJIS = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"]
 
@@ -26,14 +24,12 @@ async def on_ready():
 async def on_message(message):
     global POLL_OPTION_EMOJIS
 
-    # Handle responses
     try:
         response = responses.get_response(message.content)
         await message.channel.send(response)
     except Exception as e:
         print(e)
-
-    # Handle poll creation
+    #POLL CREATION:
     if message.content.startswith("!create_poll"):
         params = message.content.split(";")
         name = params[0].replace("!create_poll", "").strip()
@@ -76,7 +72,7 @@ async def on_message(message):
             if remaining_time > 0:
                 minutes, seconds = divmod(int(remaining_time), 60)
 
-                # Edit the message
+              
                 description = f"**{question}**\n{options}\n\n*Poll ends in {minutes:02d}:{seconds:02d}*"
                 embed = discord.Embed(title=f"POLL: {name}", description=description, color=0x12ff51)
                 await sent.edit(embed=embed)
@@ -87,7 +83,7 @@ async def on_message(message):
                 poll_results_count = {}
                 total_reactions = 0
 
-                # If countdown expired
+               
                 for reaction in sent_message.reactions:
                     for ind, emoji in enumerate(POLL_OPTION_EMOJIS):
                         if reaction.emoji == emoji:
@@ -114,11 +110,9 @@ async def on_message(message):
 @client.event
 async def on_raw_reaction_add(payload):
     global SENT_MESSAGE_IDS
-    # Get the message object
     channel = await client.fetch_channel(payload.channel_id)
     message = await channel.fetch_message(payload.message_id)
 
-    # Get the member object
     guild = message.guild
     member = await guild.fetch_member(payload.user_id)
 
@@ -134,7 +128,7 @@ async def on_raw_reaction_add(payload):
         return
 
     if payload.emoji.name not in POLL_OPTION_EMOJIS:
-        # Remove reaction
+        # removes reaction from poll
         await message.remove_reaction(payload.emoji.name, member)
         return
 
@@ -166,5 +160,6 @@ def validate_params(name, question, options, countdown):
 
 
 if __name__ == "__main__":
-    # Start the bot
+    # starts the bot
     client.run(DISCORD_TOKEN)
+#made by HUOOWIN KYOMA, mad scientist.
