@@ -1,3 +1,5 @@
+#THIS CODE IS USELESS 100%
+
 import discord
 from discord.ext import tasks
 import datetime as dt
@@ -5,12 +7,10 @@ DISCORD_TOKEN = "" #add your bot token
 
 
 
-# Define required intents
 intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 
-# Create client object
 client = discord.Client(intents=intents)
 POLL_OPTION_EMOJIS = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"]
 
@@ -146,5 +146,4 @@ def validate_params(name, question, options, countdown):
 
 
 if __name__ == "__main__":
-    # Start the bot
     client.run(DISCORD_TOKEN)
